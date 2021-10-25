@@ -1,4 +1,5 @@
 export PATH="/usr/local/opt/ruby/bin:$PATH"
+set -o vi
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -23,26 +24,25 @@ alias rm="rm -i"
 alias mv="mv -v"
 alias tree="tree -C -A"
 alias vi="vim"
-
+alias bin-decomp="bin-decomp"
 
 # Helpfulmovement shortcuts
 alias schrodinger='cd ~/l4p1s/quantum; conda activate quantumlab'
-alias snakey='cd ~/l4p1s/pyth0n'
+alias snakey='cd ~/l4p1s/other/pyth0n'
 alias gen0m1cs='cd ~/l4p1s/mung1ng/qiime; conda activate qiime2'
 alias bi01nf0rm4t1cs='cd ~/l4p1s/mung1ng/qiime; conda activate qiime2-dev'
-alias 3ll10t='cd ~/l4p1s/s3p10l'
-alias websites='cd ~/l4p1s/webdev'
-alias kernigan='cd ~/l4p1s/holyC'
-alias c0ffee='cd ~/l4p1s/java'
-alias scriptkid='cd ~/l4p1s/bash'
+alias temple='cd ~/l4p1s/basiC'
+alias c0ffee='cd ~/l4p1s/crypt'
+alias sheldon='cd ~/l4p1s/shellscripts'
 alias rustacean='cd ~/l4p1s/rust; rustup update'
 
 # Helpful Network Programs
-alias pyssh="python3 ~/l4p1s/s3p10l/ssh_cmd.py"
-alias pycat="python3 ~/l4p1s/s3p10l/netcat.py"
+alias pyssh="python3 ~/l4p1s/other/pyth0n/ssh_cmd.py"
+alias pycat="python3 ~/l4p1s/other/pyth0n/netcat.py"
 
 #Change the umask to make directory sharing easier
 umask 0002
+
 # Search for dot files
 alias l.="ls -d .*"
 alias ll="ls -l"
