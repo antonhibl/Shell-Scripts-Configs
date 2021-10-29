@@ -58,16 +58,62 @@ map <C-n> :NERDTreeToggle<CR>
 
 set clipboard^=unnamed
 
-" Code Shortcut Tag
-autocmd FileType html inoremap <Space><Space> <Esc>/<++><Enter>"_c4l
-
 " HTML Shortcuts
-autocmd FileType html inoremap ;h <h></h><Space><++><Esc>FhT>
-autocmd FileType html inoremap ;b <b></b><Space><++><Esc>FbT>
-autocmd FileType html inoremap ;p <p></p><Enter><Enter><++><Esc>2ki
+autocmd FileType html inoremap ;head <head><Enter></head><Esc>kA<Enter>
+autocmd FileType html inoremap ;body <body><Enter></body><Esc>kA<Enter>
+autocmd FileType html inoremap ;canvas <canvas></canvas><Space><Esc>FcT>i
+autocmd FileType html inoremap ;bold <b></b><Space><Esc>FbT>i
+autocmd FileType html inoremap ;p <p><Enter><Enter></p><Space><Esc>ki<Space><Space>
+autocmd FileType html inoremap ;em <em></em><Space><Esc>FeT>i
+autocmd FileType html inoremap ;title <title></title><Space><Esc>FtFtT>i
+autocmd FileType html inoremap ;html <html<Space>lang="en-us"><Enter><Enter></html><Space><Esc>ki<Space><Space>
+autocmd FileType html inoremap ;div <div><Enter></div><Esc>kA<Enter>
+autocmd FileType html inoremap ;sub <sub></sub><Space><Esc>FsT>i
+autocmd FileType html inoremap ;sup <sup></sup><Space><Esc>FsT>i
+autocmd FileType html inoremap ;small <small></small><Space><Esc>FsT>i
+autocmd FileType html inoremap ;strike <strike></strike><Space><Esc>FsT>i
+autocmd FileType html inoremap ;footer <footer><Enter><Enter></footer><Space><Esc>ki<Space><Space>
+autocmd FileType html inoremap ;span <span><Enter></span><Esc>kA<Enter>
+autocmd FileType html inoremap ;br <br><Enter>
+autocmd FileType html inoremap ;hr <hr><Enter>
+autocmd FileType html inoremap ;img <img<Space>src="url"<Space>alt="text"><Space><Esc>Fui
+autocmd FileType html inoremap ;ah <a<Space>href="url"><Space>link<Space>text<Space></a><Space><Esc>Fui
+autocmd FileType html inoremap ;ol <ol></ol><Space><Esc>FoT>i
+autocmd FileType html inoremap ;ul <ul></ul><Space><Esc>FuT>i
+autocmd FileType html inoremap ;li <li></li><Space><Esc>FlT>i
+autocmd FileType html inoremap ;dt <dt></dt><Space><Esc>FdT>i
+autocmd FileType html inoremap ;dl <dl></dl><Space><Esc>FdT>i
+autocmd FileType html inoremap ;dd <dd></dd><Space><Esc>FdhT>i
+autocmd FileType html inoremap ;table <table><table><Space><Esc>FtT>i
+autocmd FileType html inoremap ;tr <tr></tr><Space><Esc>FtT>i
+autocmd FileType html inoremap ;td <td></td><Space><Esc>FtT>i
+autocmd FileType html inoremap ;th <th></th><Space><Esc>FtT>i
+autocmd FileType html inoremap ;doctype <!DOCTYPE html><Enter>
+autocmd FileType html inoremap ;meta <meta<Space>charset="utf-8"<Space>name="viewport"<Space>content="width=device-width,<Space>initial-scale=1.0"><Enter>
+autocmd FileType html inoremap <!-- <!-- / --><Space><Esc>F/xi
+autocmd FileType html inoremap ;link <link><Enter>
+autocmd FileType html inoremap ;form <form></form><Space><Esc>FfT>i
+autocmd FileType html inoremap ;input <input></input><Space><Esc>FiT>i
+autocmd FileType html inoremap ;css <link<Space>rel="stylesheet"<Space>type="text/css"<Space>href="/style.css"<Space>/><Space><Esc>FyFsi
+autocmd FileType html inoremap ;style <style></style><Space><Esc>FsT>i
+autocmd FileType html inoremap ;h1 <h1></h1><Space><Esc>FhT>i
+autocmd FileType html inoremap ;h2 <h2></h2><Space><Esc>FhT>i
+autocmd FileType html inoremap ;h3 <h3></h3><Space><Esc>FhT>i
+autocmd FileType html inoremap ;h4 <h4></h4><Space><Esc>FhT>i
+autocmd FileType html inoremap ;h5 <h5></h5><Space><Esc>FhT>i
+autocmd FileType html inoremap ;h6 <h6></h6><Space><Esc>FhT>i
+autocmd FileType html inoremap ;class class=""<Space><Esc>F"i
+autocmd FileType html inoremap ;id id=""<Space><Esc>F"i
+autocmd FileType html inoremap ;script <script<Space>src=""><Space><Esc>F"i
+autocmd FileType html inoremap ;audio <audio<Space>controls><Enter><Enter></audio><Space><Esc>ki<Space><Space>
+
+
+" CSS Shortcuts
+
+" PHP Shortcuts
 
 " C-language Shortcuts
-autocmd FileType c inoremap ;m int main( int argc, int argv[] )<Enter>{<Enter><Tab><Enter>}<Esc>kA
+autocmd FileType c inoremap ;m int main( int argc, char * argv[] )<Enter>{<Enter><Tab><Enter>}<Esc>kA
 autocmd FileType c inoremap #i" #include ""<Esc>i
 autocmd FileType c inoremap #i<> #include <><Esc>i
 autocmd FileType c inoremap ;$ return 0;

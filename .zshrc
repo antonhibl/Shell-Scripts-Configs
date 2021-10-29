@@ -22,7 +22,7 @@ alias ls="ls -lsaG"
 alias cp="cp -iv -a"
 alias rm="rm -i"
 alias mv="mv -v"
-alias tree="tree -C -A"
+alias tree="tree -CA"
 alias vi="vim"
 alias bin-decomp="bin-decomp"
 
@@ -61,3 +61,5 @@ jt -t monokai -f sourcemed
 
 cd ~/l4p1s
 echo "hello friend."
+source /Users/cthulhu/l4p1s/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+export PATH="/usr/local/sbin:$PATH"
