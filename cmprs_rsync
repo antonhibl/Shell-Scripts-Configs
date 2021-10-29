@@ -3,6 +3,14 @@
 # rsync File Transfer Script
 # author: Anton Hibl
 
+echo Enter the login account:
+
+read login_account
+
+echo Enter the IP address:
+
+read ip_address
+
 echo Enter a filepath:
 
 read downloadpath
@@ -14,4 +22,4 @@ read outputpath
 echo
 
 # Download file from server using rsync
-rsync -zh -e 'ssh -i ~/.ssh/id_ed25519' -P aeh436@35.84.205.21:$downloadpath $outputpath
+rsync -zh -e 'ssh -P $login_account@$ip_address:$downloadpath $outputpath'

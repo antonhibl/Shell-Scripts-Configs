@@ -3,6 +3,17 @@
 # Binary Decomposition Script
 # author: Anton Hibl
 
+if [ !$1 ] || [ "$1" == "-h" ] || [ "$1" == "--help" ]
+then
+	echo "Source Code Decomposition Tool"
+	echo "Usage: bin-decomp [FLAGS] input_file1 *input_file2 *input_file3 *input_file4"
+	echo "Parameters:"
+	echo "            [FLAGS] :: '-h'/'--help' -> display this screen"
+	echo "        input_file1 :: (REQUIRED) Main Program File"
+	echo "      input_file2-4 :: (OPTIONAL) Optional Dependency Files"
+	exit 1
+fi
+
 # Create Folder to hold decomposition
 mkdir $1_decomp
 
@@ -30,6 +41,15 @@ then
     gcc -E -P $3.c -o $1_decomp/prcsr_$3.p
 fi
 
+# If File 4 is provided
+if [ "$4" ]
+then
+    # Assembly
+    gcc -S $4.c -o $1_decomp/asm_$4.s
+    # Pre-processing and Directives
+    gcc -E -P $4.c -o $1_decomp/prcsr_$4.p
+fi
+
 # Link assembly into ELF executable format
  # If File 2 exists
 if [ "$2" ]
@@ -37,10 +57,17 @@ then
     # If File 3 exists
     if [ "$3" ]
     then
-	# Link and assemble all 3 files into an ELF executable
-        gcc -Wall -Werror -Wextra $1_decomp/asm_$1.s $1_decomp/asm_$2.s $1_decomp/asm_$3.s -o $1_decomp/$1bin -lm
+		# If File 4 exists
+		if [ "$4" ]
+		then
+			# Link and assemble all 4 files into an executable
+			gcc -Wall -Werror -Wextra $1_decomp/asm_$1.s $1_decomp/asm_$2.s $1_decomp/asm_$3.s $1_decomp/asm_$4.s -o $1_decomp/$1bin -lm
+		else
+			# Link and assemble all 3 files into an executable
+			gcc -Wall -Werror -Wextra $1_decomp/asm_$1.s $1_decomp/asm_$2.s $1_decomp/asm_$3.s -o $1_decomp/$1bin -lm
+		fi
     else
-        # Link and assemble both file into an ELF executable
+        # Link and assemble both file into an executable
         gcc -Wall -Werror -Wextra $1_decomp/asm_$1.s $1_decomp/asm_$2.s -o $1_decomp/$1bin -lm
     fi
 else
