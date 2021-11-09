@@ -3,15 +3,18 @@
 # Binary Decomposition Script
 # author: Anton Hibl
 
-if [ !$1 ] || [ "$1" == "-h" ] || [ "$1" == "--help" ]
-then
-	echo "Source Code Decomposition Tool"
-	echo "Usage: bin-decomp [FLAGS] input_file1 *input_file2 *input_file3 *input_file4"
-	echo "Parameters:"
-	echo "            [FLAGS] :: '-h'/'--help' -> display this screen"
-	echo "        input_file1 :: (REQUIRED) Main Program File"
-	echo "      input_file2-4 :: (OPTIONAL) Optional Dependency Files"
-	exit 1
+if [ !$1 ]
+then	
+	if [ "$1" == "-h" ] || [ "$1" == "--help" ]
+	then
+		echo "Source Code Decomposition Tool"
+		echo "Usage: bin-decomp [FLAGS] input_file1 *input_file2 *input_file3 *input_file4"
+		echo "Parameters:"
+		echo "            [FLAGS] :: '-h'/'--help' -> display this screen"
+		echo "        input_file1 :: (REQUIRED) Main Program File"
+		echo "      input_file2-4 :: (OPTIONAL) Optional Dependency Files"
+		exit 1
+	fi
 fi
 
 # Create Folder to hold decomposition
