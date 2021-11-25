@@ -1,7 +1,0 @@
-#!/bin/bash -
-
-# rsync File Transfer Script
-# author: Anton Hibl
-
-# Download file from server using rsync
-rsync -e ssh -P aeh436@35.84.205.21:~/files/module04/hello.txt ./
