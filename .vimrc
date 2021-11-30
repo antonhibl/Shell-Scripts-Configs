@@ -130,7 +130,7 @@ map <C-n> :NERDTreeToggle<CR>
 nnoremap <C-s> :!ctags -R<CR>
 
 " Alternating Settings and Binds
-nmap <silent> <F4> :Alternate<CR
+nmap <silent> <F4> :Alternate<CR>
 
 " Alternating File Mappings
 let g:AlternateExtensionMappings = [{'.cpp' : '.h', '.h' : '.hpp', '.hpp' : '.cpp'}, {'.c': '.h', '.h': '.c'}]
