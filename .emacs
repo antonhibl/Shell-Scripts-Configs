@@ -1,3 +1,13 @@
+(setq path-to-ctags "/usr/bin/ctags")
+
+;; function to create tags, run with M-x create-tags
+(defun create-tags (dir-name)
+    "Create tags file."
+    (interactive "DDirectory: ")
+    (shell-command
+     (format "%s -f -e -R TAGS" path-to-ctags))
+  )
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -10,7 +20,7 @@
  '(custom-enabled-themes '(dracula))
  '(custom-safe-themes
    '("b4ba3e1bba2e303265eb3e9753215408e75e031f7c894786ad04cabef46ff94c" default))
- '(package-selected-packages '(dracula-theme evil)))
+ '(package-selected-packages '(ctags-update dracula-theme evil)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
