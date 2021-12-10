@@ -5,7 +5,7 @@
     "Create tags file."
     (interactive "DDirectory: ")
     (shell-command
-     (format "%s -f -e -R TAGS" path-to-ctags))
+     (format "%s -f TAGS -e -R %s" path-to-ctags (directory-file-name dir-name)))
   )
 
 (custom-set-variables
@@ -19,8 +19,9 @@
    ["black" "#d55e00" "#009e73" "#f8ec59" "#0072b2" "#cc79a7" "#56b4e9" "white"])
  '(custom-enabled-themes '(dracula))
  '(custom-safe-themes
-   '("b4ba3e1bba2e303265eb3e9753215408e75e031f7c894786ad04cabef46ff94c" default))
- '(package-selected-packages '(ctags-update dracula-theme evil)))
+   '("18bec4c258b4b4fb261671cf59197c1c3ba2a7a47cc776915c3e8db3334a0d25" "b4ba3e1bba2e303265eb3e9753215408e75e031f7c894786ad04cabef46ff94c" default))
+ '(package-selected-packages
+   '(use-package git org-evil evil-org ctags-update dracula-theme evil)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
