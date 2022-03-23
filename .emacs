@@ -1,4 +1,4 @@
-(setq path-to-ctags "/usr/bin/ctags")
+(setq path-to-ctags "/opt/homebrew/bin/ctags")
 
 ;; function to create tags, run with M-x create-tags
 (defun create-tags (dir-name)
@@ -7,6 +7,57 @@
     (shell-command
      (format "%s -f TAGS -e -R %s" path-to-ctags (directory-file-name dir-name)))
   )
+
+(global-set-key (kbd "C-c l") #'org-store-link)
+(global-set-key (kbd "C-c a") #'org-agenda)
+(global-set-key (kbd "C-c c") #'org-capture)
+
+(require 'rust-mode)
+(setq rust-format-on-save t)
+(add-hook 'rust-mode-hook
+          (lambda () (prettify-symbols-mode)))
+(define-key rust-mode-map (kbd "C-c C-c") 'rust-run)
+(add-hook 'rust-mode-hook 'eglot-ensure)
+(add-hook 'rust-mode-hook #'lsp)
+
+
+(add-hook 'org-mode-hook
+          (lambda ()
+            (font-lock-add-keywords
+             nil
+             '(("^-\\{5,\\}"  0 '(:foreground "green" :weight bold))))))
+
+(setq-default indent-tabs-mode nil)
+(setq-default tab-width 4)
+(setq indent-line-function 'insert-tab)
+
+;;(define-key dired-mode-map (kbd "<mouse-2>") #'dired-mouse-find-file)
+;;(define-key dired-mode-map (kbd "<RET>") #'dired-find-file)
+
+(add-hook 'text-mode-hook #'auto-fill-mode)
+(setq-default fill-column 80)
+(add-hook 'prog-mode-hook #'auto-fill-mode)
+
+(setq org-agenda-files '("~/agenda.org"))
+
+(setq org-startup-indented t
+      org-src-tab-acts-natively t)
+
+(font-lock-add-keywords 'org-mode
+                          '(("^ *\\([-]\\) "
+                             (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
+
+(require 'org-bullets)
+(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+
+(setq org-ellipsis "▾")
+
+(package-install 'julia-mode)
+(require 'julia-mode)`
+
+(add-to-list 'load-path /opt/homebrew/bin/julia)
+(require 'julia-repl)
+(add-hook 'julia-mode-hook 'julia-repl-mode) ;; always use minor mode
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -21,7 +72,7 @@
  '(custom-safe-themes
    '("18bec4c258b4b4fb261671cf59197c1c3ba2a7a47cc776915c3e8db3334a0d25" "b4ba3e1bba2e303265eb3e9753215408e75e031f7c894786ad04cabef46ff94c" default))
  '(package-selected-packages
-   '(use-package git org-evil evil-org ctags-update dracula-theme evil)))
+   '(rust-mode unicode-fonts ssh go-autocomplete go-add-tags go evil-ledger ledger-mode jupyter prettify-greek ox-twbs lsp-mode lua-mode luarocks helm magit emmet-mode ruby-interpolation ruby-interpolationppet-classic-snippets ruby-compilation haskell-emacs go-mode perlbrew julia-shell julia-repl julia-mode org-bullets use-package git org-evil evil-org ctags-update dracula-theme evil)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -65,3 +116,12 @@
 ;; Enable Evil
 (require 'evil)
 (evil-mode 1)
+
+;;(autoload 'ledger-mode "ledger-mode" "A major mode for Ledger" t)
+;;(add-to-list 'load-path
+  ;;           (expand-file-name "/path/to/ledger/source/lisp/"))
+;;(add-to-list 'auto-mode-alist '("\\.ledger$" . ledger-mode))
+
+(setq inhibit-splash-screen t)
+(org-agenda-list)
+(delete-other-windows)

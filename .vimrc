@@ -4,6 +4,7 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'JuliaEditorSupport/julia-vim'
 Plugin 'preservim/nerdtree'
+Plugin 'mattn/webapi-vim'
 Plugin 'mattn/emmet-vim'
 Plugin 'itchyny/lightline.vim'
 Plugin 'vim-syntastic/syntastic'
@@ -11,8 +12,11 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'yggdroot/indentline'
 Plugin 'ton/vim-alternate'
 Plugin 'scrooloose/nerdcommenter'
+Plugin 'rust-lang/rust.vim'
 Plugin 'tpope/vim-surround'
 Plugin 'davidhalter/jedi-vim'
+Plugin 'fatih/vim-go'
+Plugin 'maralla/completor.vim'
 call vundle#end()
 
 " Nerd commenter settings
@@ -61,9 +65,13 @@ let g:user_emmet_install_global = 0
 autocmd FileType html,css EmmetInstall
 
 " Set tags
-set tags?
+set tags
 " Creates tags
-!ctags -R
+"!ctags -R
+" automatic Ctags save call
+"autocmd BufWritePost * call system("ctags -R")
+" tag hotkey mapping
+nnoremap <leader>tag :!ctags -R<CR>
 
 " standard vim settings
   " redundant in newer versions of vim
@@ -135,9 +143,6 @@ nmap <silent> <F4> :Alternate<CR>
 " Alternating File Mappings
 let g:AlternateExtensionMappings = [{'.cpp' : '.h', '.h' : '.hpp', '.hpp' : '.cpp'}, {'.c': '.h', '.h': '.c'}]
 
-" Ctags save call
-autocmd BufWritePost * call system("ctags -R")
-
 " clipboard enabled
 set clipboard^=unnamed
 
@@ -190,7 +195,33 @@ autocmd FileType html inoremap ;id id=""<Space><Esc>F"i
 autocmd FileType html inoremap ;script <script<Space>src=""><Space><Esc>F"i
 autocmd FileType html inoremap ;audio <audio<Space>controls><Enter><Enter></audio><Space><Esc>ki<Space><Space>
 
-" PHP Shortcuts
+" Common Go commands
+au FileType go nmap <leader>r <Plug>(go-run)
+au FileType go nmap <leader>b <Plug>(go-build)
+au FileType go nmap <leader>t <Plug>(go-test)
+au FileType go nmap <leader>c <Plug>(go-coverage-toggle)
+au FileType go nmap <Leader>e <Plug>(go-rename)
+au FileType go nmap <Leader>s <Plug>(go-implements)
+au FileType go nmap <Leader>i <Plug>(go-info)
+
+" Navigation commands
+au FileType go nmap <Leader>ds <Plug>(go-def-split)
+au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
+
+" Alternate commands
+au FileType go nmap <Leader>ae <Plug>(go-alternate-edit)
+au FileType go nmap <Leader>av <Plug>(go-alternate-vertical)
+
+" Alternate commands
+au FileType go nmap <Leader>ae <Plug>(go-alternate-edit)
+au FileType go nmap <Leader>av <Plug>(go-alternate-vertical)
+
+" Use new vim 8.2 popup windows for Go Doc
+let g:go_doc_popup_window = 1
+
+" Enable lsp for go by using gopls
+let g:completor_filetype_map = {}
+let g:completor_filetype_map.go = {'ft': 'lsp', 'cmd': 'gopls -remote=auto'}"
 
 " C-language Shortcuts
 autocmd FileType c inoremap ;m int main( int argc, char * argv[] )<Enter>{<Enter><Tab><Enter>}<Esc>kA

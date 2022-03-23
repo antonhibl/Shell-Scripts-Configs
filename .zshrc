@@ -1,18 +1,20 @@
 # export path with ruby
 export PATH="/usr/local/opt/ruby/bin:$PATH"
+# export path with go toolings
+export PATH="$PATH:$HOME/go/bin/"
 # Set vim for command line use
 set -o vi
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/opt/homebrew/Caskroom/miniconda/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+__conda_setup="$('/Users/cthulhu/opt/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh" ]; then
-        . "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh"
+    if [ -f "/Users/cthulhu/opt/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/Users/cthulhu/opt/anaconda3/etc/profile.d/conda.sh"
     else
-        export PATH="/opt/homebrew/Caskroom/miniconda/base/bin:$PATH"
+        export PATH="/Users/cthulhu/opt/anaconda3/bin:$PATH"
     fi
 fi
 unset __conda_setup
@@ -21,6 +23,8 @@ unset __conda_setup
 # metasploit alias
 alias metasploit="/opt/metasploit-framework/bin/msfconsole"
 
+export GOPATH=/Users/cthulhu/l4p1s/languages/go
+
 # command aliases
 alias ls="ls -lsaG"
 alias cp="cp -iv -a"
@@ -28,6 +32,7 @@ alias rm="rm -i"
 alias mv="mv -v"
 alias tree="tree -CA"
 alias vi="vim"
+alias gslcc="gcc -I/usr/local/include -L/usr/local/lib -lgsl -lgslcblas -lcblas -latlas -lm"
 alias ubu="multipass exec foo -- zsh"
 alias ubucmd="multipass exec foo --"
 
@@ -50,7 +55,7 @@ export HISTCONTROL=ignoredups
 export HISTSIZE=1000
 
 # Sets Prompt
-PROMPT="%F{69}┌──%f%F{cyan}%t%F{69}[%f%F{11}%n%f%F{white}@%f%F{42}%1d%F{69}]%f%f"$'\n'"%F{69}└─%f %F{197}λ%f "
+PROMPT="%F{69}┌──%f%F{cyan}%t%F{69}[%f%F{11}%n%f%F{white}@%f%F{42}%1d%F{69}]%f%f"$'\n'"%F{69}└─%f %F{197}λΨ%f "
 
 # Alias for monsoon ssh shell
 alias monsoon='ssh -Y aeh436@monsoon.hpc.nau.edu'
@@ -65,4 +70,7 @@ cd ~/l4p1s
 echo "hello friend."
 # use zsh syntax highlighting
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# activate rubyenv
+eval "$(rbenv init - zsh)"
+#export correct path
 export PATH="/usr/local/sbin:$PATH"
