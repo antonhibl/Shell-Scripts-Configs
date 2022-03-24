@@ -2,6 +2,7 @@
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
+Plugin 'dense-analysis/ale'
 Plugin 'JuliaEditorSupport/julia-vim'
 Plugin 'preservim/nerdtree'
 Plugin 'mattn/webapi-vim'
@@ -11,12 +12,16 @@ Plugin 'vim-syntastic/syntastic'
 Plugin 'tpope/vim-fugitive'
 Plugin 'yggdroot/indentline'
 Plugin 'ton/vim-alternate'
+Plugin 'leafgarland/typescript-vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'rust-lang/rust.vim'
 Plugin 'tpope/vim-surround'
 Plugin 'davidhalter/jedi-vim'
 Plugin 'fatih/vim-go'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'maralla/completor.vim'
+Plugin 'preservim/tagbar'
+Plugin 'prettier/vim-prettier'
 call vundle#end()
 
 " Nerd commenter settings
@@ -35,6 +40,8 @@ let g:NERDTrimTrailingWhitespace = 1
   " Enable NERDCommenterToggle to check all selected lines is commented or not
 let g:NERDToggleCheckAllLines = 1
 
+nmap <leader>tagbar :TagbarToggle<CR>
+
 " enable indent guide on start
   "let g:indent_guides_enable_on_vim_startup = 1
 let g:indentLine_setConceal = 1
@@ -44,6 +51,15 @@ let g:indentLine_setConceal = 1
 let g:python3_host_prog='/usr/bin/python3'
   " YCM white-list
 let g:ycm_filetype_whitelist = { 'cpp':1, 'h':2, 'hpp':3, 'c':4, 'cxx':5 }
+
+" Typescript syntax and editing settings
+let g:typescript_indent_disable = 1
+" use tsc to lint
+let g:typescript_compiler_binary = 'tsc'
+" EcmaScript 6 Library
+let g:typescript_compiler_options = '--lib es6'
+" override make for typescript files
+autocmd FileType typescript :set makeprg=tsc
 
 " Syntax Highlighting
   " enable warning messages from the syntax parser
@@ -59,10 +75,42 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
-" Emmett settings
-let g:user_emmet_install_global = 0
-" Enable emmet only on html and css
-autocmd FileType html,css EmmetInstall
+" Prettier JS formatting
+autocmd FileType javascript set formatprg=prettier
+let g:ale_linters = {
+\   'javascript': ['eslint'],
+\   'typescript': ['tslint'],
+\}
+" auto format on save
+let g:ale_fix_on_save = 1
+" pretty symbols for ale
+let g:ale_sign_error = '❌'
+let g:ale_sign_warning = '⚠️'
+"status line ale errors
+let g:airline#extensions#ale#enabled = 1
+
+" Nerd tree git status values
+let g:NERDTreeGitStatusIndicatorMapCustom = {
+                \ 'Modified'  :'🔧',
+                \ 'Staged'    :'🛫',
+                \ 'Untracked' :'🚷',
+                \ 'Renamed'   :'➜',
+                \ 'Unmerged'  :'═',
+                \ 'Deleted'   :'✘',
+                \ 'Dirty'     :'✗',
+                \ 'Ignored'   :'﹆',
+                \ 'Clean'     :'⌁',
+                \ 'Unknown'   :'?',
+                \ }
+
+" Use nerd fonts
+let g:NERDTreeGitStatusUseNerdFonts = 1
+" show ignored git
+let g:NERDTreeGitStatusShowIgnored = 1
+" clean indicator git
+let g:NERDTreeGitStatusShowClean = 1
+" hide [] git status nerd tree
+let g:NERDTreeGitStatusConcealBrackets = 1
 
 " Set tags
 set tags
@@ -145,6 +193,9 @@ let g:AlternateExtensionMappings = [{'.cpp' : '.h', '.h' : '.hpp', '.hpp' : '.cp
 
 " clipboard enabled
 set clipboard^=unnamed
+
+" Enable ES lint only for javascript
+let b:ale_linters = {'javascript': ['eslint']}
 
 " HTML Shortcuts
 autocmd FileType html inoremap ;head <head><Enter></head><Esc>kA<Enter>
@@ -229,3 +280,9 @@ autocmd FileType c inoremap #i" #include ""<Esc>i
 autocmd FileType c inoremap #i<> #include <><Esc>i
 autocmd FileType c inoremap ;$ return 0;
 autocmd FileType c inoremap ;spec /*<Enter><Esc>ddAName: <Enter>Process: <Enter>Method Input: <Enter>Method Output(parameters): <Enter>Method Output(returned): <Enter>Device Input: <Enter>Device Output: <Enter>Dependencies: <Enter><Delete>*/<Enter>
+
+" Emmett settings
+let g:user_emmet_install_global = 0
+" Enable emmet only on html and css
+autocmd FileType html,css EmmetInstall
+
